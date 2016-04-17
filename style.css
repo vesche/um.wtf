@@ -1,0 +1,19 @@
+a {
+    color: #333;
+    text-decoration: none;
+    font-style: italic;
+    border-bottom: 1px dotted grey;
+}
+
+a:hover {
+    color: #755;
+}
+
+p {
+    text-align: left;
+    margin: auto;
+    width: 70%;
+    max-width: 720px;
+    border-top:1px solid #aaa;
+    padding: 10px;
+}

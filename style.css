@@ -1,5 +1,12 @@
+body {
+  background-color: #000;
+  color: #faebd7;
+}
+
 a {
-    color: #333;
+    /* color: #333; */
+    /* color: #9F9F9F; */
+    color: #C0D9D9;
     text-decoration: none;
     font-style: italic;
     border-bottom: 1px dotted grey;

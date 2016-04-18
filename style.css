@@ -1,13 +1,12 @@
 body {
-  background-color: #000;
-  color: #fff;
+  background: #BEC6C9;
+  color: #000;
 }
 
 a {
-    color: #C0D9D9;
+    color: #000;
     text-decoration: none;
-    font-style: italic;
-    border-bottom: 1px dotted grey;
+    border-bottom: 1px dashed #000;
 }
 
 a:hover {
@@ -19,5 +18,5 @@ p {
     margin: auto;
     width: 90%;
     max-width: 800px;
-    border-top:1px dotted #aaa;
+    border-top:1px dashed #000;
 }

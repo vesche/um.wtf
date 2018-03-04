@@ -20,6 +20,10 @@ p {
     margin: auto;
     width: 90%;
     max-width: 800px;
-    border-top:1px dashed #000;
     line-height: 1.6em
+}
+
+hr {
+    border-top:1px dashed #000;
+    max-width: 800px;
 }

@@ -1,4 +1,4 @@
-# Every Little Hacker needs a Little Linux Computer
+# Every Little Hacker Needs A Little Linux Computer
 * By: Austin Jackson (vesche)
 * Dated: 09/20/2016
 

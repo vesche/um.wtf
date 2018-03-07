@@ -147,7 +147,7 @@ def incoming(gs, raw_data):
     event_code = raw_data[:2]
     data = raw_data[2:]
 
-    if event_type == '14':
+    if event_code == '14':
         gs.kill_info(data)
 
 class Outgoing(object):
@@ -387,6 +387,6 @@ $ python stabbybot/main.py -s <server_ip> -u stabbybot
 close status: 12596
 ```
 
-Not bad, not bad at all. The bot stayed a live for roughly 10 minutes, which is pretty good. It scored 717 points and at the time of being killed had the second highest score in the game!
+Not bad, not bad at all. The bot stayed alive for roughly 10 minutes, which is pretty good. It scored 717 points and at the time of being killed had the second highest score in the game!
 
 That's all for now! If you're looking for a fun programming project, making HTML5 game bots is a ton of fun and a great way to practice network analysis, reverse engineering, programming, algorithms, AI, and more. I look forward to seeing what you make!

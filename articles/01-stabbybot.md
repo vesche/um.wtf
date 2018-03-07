@@ -2,30 +2,30 @@
 * By: Austin Jackson (vesche)
 * Dated: 03/07/2018
 
-TL;DR: I created a bot for the game stabby.io, check out the [GitHub repo here](https://github.com/vesche/stabbybot).
+**TL;DR:** I created a bot for the game [stabby.io](http://stabby.io/), [GitHub repo here](https://github.com/vesche/stabbybot).
 
-A few weeks back, I was having a very boring night and stumbled upon stabby.io and quickly had an IO game addiction relapse (think agar, but I've been through treatment). You spawn into a small map of players identical to yourself and can kill anyone around you. The vast majority of players around you are computer players, and you have to determine who the human players are. I got drunk and played the game in an unproductive blur for hours, it was glorious.
+A few weeks back, I was having a very boring night and stumbled upon [stabby.io](http://stabby.io/) and quickly had an IO game addiction relapse (think agar, but I've been through treatment). You spawn into a small map of players identical to yourself and can kill anyone around you. The vast majority of players around you are computer players, and you have to determine who the human players are. I got drunk and played the game in an unproductive blur for hours, it was glorious.
 
 ![01-scrot](media/01-scrot.png)
 
-As my drunken night dragged on somewhere in the back of my mind Eric S. Raymond reminded me that [boredom and drudgery are evil](http://www.catb.org/~esr/faqs/hacker-howto.html#believe3)... I also remembered that the guy who runs [LiveOverflow](http://www.liveoverflow.com/) had recently yelled at me (via video) to [STOP WASTING YOUR TIME AND LEARN MORE HACKING!](https://www.youtube.com/watch?v=AMMOErxtahk) Thus I decided to turn my boredom and unproductiveness into a fun programming project, and I set out to create a Python bot to play stabby.io for me!
+As my drunken night dragged on somewhere in the back of my mind Eric S. Raymond reminded me that [boredom and drudgery are evil](http://www.catb.org/~esr/faqs/hacker-howto.html#believe3)... I also remembered that the guy who runs [LiveOverflow](http://www.liveoverflow.com/) had recently yelled at me (via video) to [STOP WASTING YOUR TIME AND LEARN MORE HACKING!](https://www.youtube.com/watch?v=AMMOErxtahk) Thus I decided to turn my boredom and unproductiveness into a fun programming project, and I set out to create a Python bot to play stabby for me!
 
-Before I get into it, the developer of stabby.io is a very cool guy named soulfoam. He streams programming and gamedev on his [Twitch channel](https://www.twitch.tv/soulfoamtv), and he gave me permission to create this bot and share it with the world. :)
+Before I get into it, the developer of stabby is a very cool guy named soulfoam. He streams programming and gamedev on his [Twitch channel](https://www.twitch.tv/soulfoamtv), and he gave me permission to create this bot and share it with the world.
 
-My initial thought was to use [autopy](http://www.autopy.org/) to capture the screen and send mouse movements based on image analysis (RIP the Runescape bots of my youth). I quickly abandoned this line of thinking as I realized that there was a direct way of interacting with the game- [WebSockets](https://en.wikipedia.org/wiki/WebSocket)! Because stabby.io is an HTML5 real-time multiplayer game it uses WebSockets for a persistent connection between the client and a server so both parties can send data at any time.
+My initial thought was to use [autopy](http://www.autopy.org/) to capture the screen and send mouse movements based on image analysis (RIP the Runescape bots of my youth). I quickly abandoned this line of thinking as I realized that there was a direct way of interacting with the game- [WebSockets](https://en.wikipedia.org/wiki/WebSocket)! Because stabby is an HTML5 real-time multiplayer game it uses WebSockets for a persistent connection between the client and a server so both parties can send data at any time.
 
 ![01-websockets](media/01-websockets.png)
 
-So what we need to do is take a look at the WebSocket communication between the client and server. If it's possible to understand messages sent **from** the server, and recreate messages sent **to** the server then we might be able to play the game through direct WebSocket communication. Let's start a game of stabby.io and crack open [Wireshark](https://www.wireshark.org/) to get a look at the traffic.
+So what we need to do is take a look at the WebSocket communication between the client and server. If it's possible to understand messages sent **from** the server, and recreate messages sent **to** the server then we might be able to play the game through direct WebSocket communication. Let's start a game of stabby and crack open [Wireshark](https://www.wireshark.org/) to get a look at the traffic.
 
 ![01-wireshark](media/01-wireshark.png)
 
-Note: I'm censoring the stabby.io server IP above so it doesn't get slammed, I don't provide the IP with stabbybot so you'll need to get that on your own. This is to avoid script kiddies abusing the bot.
+**Note:** I'm censoring the stabby server IP above so it doesn't get slammed, I don't provide the IP with stabbybot so you'll need to get that on your own. This is to avoid script kiddies abusing the bot.
 
 Where were we? Oh right- Mmm, juicy WebSocket packets. We now see the first sign that we are on the right track! I set my username to `chain` before starting the game, and within the WebSocket data section of the second packet is `03chain` being sent to the server. This is how everyone in-game knows my name!
 
 Upon further analysis of the packet capture I determined what the client is sending to the server to initiate the connection. Here's what we need to recreate in Python:
-* Connect to the stabby.io WebSocket server
+* Connect to the stabby WebSocket server
 * Send the current game version (000.0.4.3)
 * WebSocket Ping/Pong
 * Send our in-game username
@@ -101,8 +101,8 @@ EVENTS = {
 With this information we can being to structure our bot!
 ```
 .
-├── main.py  - Entry point for the bot. Will connect to the stabby.io server
-│              and contain the main loop.
+├── main.py  - Entry point for the bot. Will connect to the stabby 
+│              server and contain the main loop.
 ├── comm.py  - Process all incoming and outgoing messages.
 ├── state.py - Keep track of the current state of the game.
 ├── brain.py - All decision making the bot will do.
@@ -112,9 +112,9 @@ With this information we can being to structure our bot!
 The main loop in `main.py` will happen like so:
 * Receive incoming server messages.
 * Send server messages to `comm.py` for processing.
-    * Processed data will be stored in the current game state (`state.py`).
+* Processed data will be stored in the current game state (`state.py`).
 * The current game state will be given to `brain.py`.
-    * Decisions will be made based on the game state.
+* Decisions will be made based on the game state.
 
 Let's take a look at how we can implement a very basic bot with this structure that will **move to the location of where the last player was killed**. When someone is killed in the game, everyone is broadcast a message like so `14+12906,120.2,64.8,seth`. This is event code `14` followed by a comma separated player id, x & y coordinates, and the username of the killer. If we'd then like to walk to this location we would send event code `07` followed by a comma separated x & y coordinates.
 
@@ -223,7 +223,7 @@ When this bot is run, it will do exactly as expected. When someone dies, the bot
 
 The structure we created for the simple bot above can then be expanded to add much more functionality, check out the [stabbybot GitHub repo](https://github.com/vesche/stabbybot) to see how `comm.py` and `state.py` are fleshed out to include all the bells and whistles.
 
-Now we're going to be attempting to create a bot that can actually compete with average skill human players. The easiest way to be successful in stabby.io is to be patient, walk around, wait to see someone be killed, and then kill the person you saw kill someone else.
+Now we're going to be attempting to create a bot that can actually compete with average skill human players. The easiest way to be successful in stabby is to be patient, walk around, wait to see someone be killed, and then kill the person you saw kill someone else.
 
 So here's what we need this bot to be able to do:
 * Walk around randomly.
@@ -346,7 +346,7 @@ from scipy import spatial
                 self.outgoing.kill(kill_uid)
 ```
 
-If you'd like to see this all together [here is the complete brain.py in stabbybot](https://github.com/vesche/stabbybot/blob/master/stabbybot/brain.py).
+If you'd like to see this all together [here is the complete brain.py within stabbybot](https://github.com/vesche/stabbybot/blob/master/stabbybot/brain.py).
 
 Let's run this bot now and see how it fares:
 ```

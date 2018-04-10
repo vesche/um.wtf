@@ -2,6 +2,8 @@
 * By: Austin Jackson (vesche)
 * Dated: 03/07/2018
 
+This article is also avaliable in [Chinese (中文)](https://juejin.im/post/5aa9e7645188257bf550c745)!
+
 **TL;DR:** I created a bot for the game [stabby.io](http://stabby.io/), [GitHub repo here](https://github.com/vesche/stabbybot).
 
 A few weeks back, I was having a very boring night and stumbled upon [stabby.io](http://stabby.io/) and quickly had an IO game addiction relapse (think agar, but I've been through treatment). You spawn into a small map of players identical to yourself and can kill anyone around you. The vast majority of players around you are computer players, and you have to determine who the human players are. I got drunk and played the game in an unproductive blur for hours, it was glorious.

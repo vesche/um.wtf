@@ -4,8 +4,6 @@
 
 I was visiting my sister recently when I was shocked to discover that my nearly five-year-old nephew had grown into a full-blown walking, talking, little human being! So, naturally my first question was, “Where is this little hackers little computer?” To which I was sadly told that he did not have a computer of his own! Well, that just won’t do.
 
-I know what you’re probably all thinking, why isn’t this kid’s adorable face on every possible toddler related product currently on the market? Rest assured, I constantly remind my sister of how she could be exploiting his cuteness for millions of dollars- but I digress. Where were we? Oh right, Linux.
-
 Let’s talk hardware. If we’re building this little dude a Linux computer and we’re “ballin’ on a budget”, there’s no better choice than a Raspberry Pi. I mean <i>he is</i> a hacker in training, right? His typing (and well, hand coordination in general) isn’t that great yet, so we’ll need an over-sized keyboard. A big mouse pad, and a good wireless mouse will do well. Oh, and how about a VESA mount case for the Raspberry Pi so it stays out of the way? All of that should do nicely.
 
 ![00-hardware](media/00-hardware.jpeg)

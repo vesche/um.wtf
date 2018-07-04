@@ -6,11 +6,11 @@ This article is also avaliable in [Chinese (中文)](https://juejin.im/post/5aa9
 
 **TL;DR:** I created a bot for the game [stabby.io](http://stabby.io/), [GitHub repo here](https://github.com/vesche/stabbybot).
 
-A few weeks back, I was having a very boring night and stumbled upon [stabby.io](http://stabby.io/) and quickly had an IO game addiction relapse (think agar, but I've been through treatment). You spawn into a small map of players identical to yourself and can kill anyone around you. The vast majority of players around you are computer players, and you have to determine who the human players are. I got drunk and played the game in an unproductive blur for hours, it was glorious.
+A few weeks back, I was having a very boring night and stumbled upon [stabby.io](http://stabby.io/) and quickly had an IO game addiction relapse (think agar, but I've been through treatment). You spawn into a small map of players identical to yourself and can kill anyone around you. The vast majority of players around you are computer players, and you have to determine who the human players are.
 
 ![01-scrot](media/01-scrot.png)
 
-As my drunken night dragged on somewhere in the back of my mind Eric S. Raymond reminded me that [boredom and drudgery are evil](http://www.catb.org/~esr/faqs/hacker-howto.html#believe3)... I also remembered that the guy who runs [LiveOverflow](http://www.liveoverflow.com/) had recently yelled at me (via video) to [STOP WASTING YOUR TIME AND LEARN MORE HACKING!](https://www.youtube.com/watch?v=AMMOErxtahk) Thus I decided to turn my boredom and unproductiveness into a fun programming project, and I set out to create a Python bot to play stabby for me!
+As my night dragged on somewhere in the back of my mind Eric S. Raymond reminded me that [boredom and drudgery are evil](http://www.catb.org/~esr/faqs/hacker-howto.html#believe3)... I also remembered that the guy who runs [LiveOverflow](http://www.liveoverflow.com/) had recently yelled at me (via video) to ["Stop wasting your time and learn more hacking!"](https://www.youtube.com/watch?v=AMMOErxtahk) Thus I decided to turn my boredom and unproductiveness into a fun programming project, and I set out to create a Python bot to play stabby for me!
 
 Before I get into it, the developer of stabby is a very cool guy named soulfoam. He streams programming and gamedev on his [Twitch channel](https://www.twitch.tv/soulfoamtv), and he gave me permission to create this bot and share it with the world.
 

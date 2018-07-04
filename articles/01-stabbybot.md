@@ -22,22 +22,20 @@ So what we need to do is take a look at the WebSocket communication between the 
 
 ![01-wireshark](media/01-wireshark.png)
 
-**Note:** I'm censoring the stabby server IP above so it doesn't get slammed, I don't provide the IP with stabbybot so you'll need to get that on your own. This is to avoid script kiddies abusing the bot.
+**Note:** I'm censoring the stabby server IP above so it doesn't get slammed, I don't provide the IP with stabbybot so you'll need to get that on your own. This is to avoid script kiddies abusing the bot. It's a very simple task to get the server IP if you're interested.
 
-Where were we? Oh right- Mmm, juicy WebSocket packets. We now see the first sign that we are on the right track! I set my username to `chain` before starting the game, and within the WebSocket data section of the second packet is `03chain` being sent to the server. This is how everyone in-game knows my name!
+Where were we? Oh right- Mmm, juicy WebSocket packets. We now see the first sign that we are on the right track! I set my username to `chain` before starting the game, and within the WebSocket data of the second packet is `03chain` being sent to the server. This is how everyone in-game knows my name!
 
 Upon further analysis of the packet capture I determined what the client is sending to the server to initiate the connection. Here's what we need to recreate in Python:
 * Connect to the stabby WebSocket server
-* Send the current game version (000.0.4.3)
-* WebSocket Ping/Pong
-* Send our in-game username
+* Send the current game version, which as of writing this is `000.0.4.3`
+* Conduct a [WebSocket Ping/Pong](https://tools.ietf.org/html/rfc6455#section-5.5.2)
+* Send our in-game username to the server
 * Listen for messages from the server
 
 To connect to the WebSocket server with Python I'm going to use the [websocket-client](https://pypi.python.org/pypi/websocket-client) library. Now let's hack together some code that does what we outlined above...
 
 ```python
-# main.py
-
 import websocket
 
 # create a websocket object
@@ -76,7 +74,7 @@ Big Money, No Whammies... We did it Reddit, server messages!
 ...
 ```
 
-These are messages being sent from the server to the client. We can now see upon login we get some information about what time of day it is in-game: `030,day`. And then some perception data starts rolling in: `05+36551,186.7,131.0,walking,left|+58036,23.1,122.8,walking,right|...`. It looks like player id, coordinates, status, and direction facing. We can now start fiddling around and reverse engineering the game communication to begin understanding what the client/server are sending.
+These are messages being sent from the server to the client. We can now see upon login we get some information about what time of day it is in-game: `030,day`. And then some perception data starts rolling in: `05+36551,186.7,131.0,walking,left|+58036,23.1,122.8,walking,right|...`. It looks like player id, coordinates, status, and direction facing. We can now start fiddling around and reverse engineering the game communication to begin understanding what the client & server are sending to each other.
 
 For instance, what happens when we kill someone in game?
 
@@ -225,14 +223,14 @@ When this bot is run, it will do exactly as expected. When someone dies, the bot
 
 The structure we created for the simple bot above can then be expanded to add much more functionality, check out the [stabbybot GitHub repo](https://github.com/vesche/stabbybot) to see how `comm.py` and `state.py` are fleshed out to include all the bells and whistles.
 
-Now we're going to be attempting to create a bot that can actually compete with average skill human players. The easiest way to be successful in stabby is to be patient, walk around, wait to see someone be killed, and then kill the person you saw kill someone else.
+Now we're going to be attempting to create a bot that can actually compete with average skill human players. The easiest way to be successful in stabby is to be patient, walk around, wait to see someone be killed, and then kill the player you saw kill someone else.
 
 So here's what we need this bot to be able to do:
 * Walk around randomly.
-* Check if anyone has been killed (`game_state['kill_info']`).
-* If someone has been killed check current perception data (`game_state['perception']`).
-* Determine if anyone was close enough to the kill to be the killer.
-* Kill the killer for points and glory!
+* Check if anyone has been killed -> `game_state['kill_info']`
+* If someone has been killed, check the current perception data -> `game_state['perception']`
+* Determine if anyone was close enough to the kill to be the murderer...
+* Take out these other players for points and glory!
 
 Let's take a look at `brain.py` and write a `GenTwo` class! The first easy part to implement is getting the bot to walk around randomly.
 

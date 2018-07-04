@@ -3,4 +3,4 @@ email: vesche@protonmail.com
 description: <a href='/index'>Home</a><br><a href='/articles'>My Articles</a><br><a href='mailto:vesche@protonmail.com'>Email</a>
 baseurl: ""
 url: ""
-theme: jekyll-theme-minimal
+theme: jekyll-theme-hacker

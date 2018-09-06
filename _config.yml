@@ -1,6 +1,8 @@
 title: vesche
 email: vesche@protonmail.com
-description: <a href='/index'>Home</a><br><a href='/articles'>My Articles</a><br><a href='mailto:vesche@protonmail.com'>Email</a>
-baseurl: ""
-url: ""
+description: <a href='/index'>Home</a> | <a href='/articles'>My Articles</a> | <a href='mailto:vesche@protonmail.com'>Email</a>
+url: "http://vesche.github.io/"
 theme: jekyll-theme-hacker
+
+gems:
+  - jekyll-octicons

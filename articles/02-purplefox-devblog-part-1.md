@@ -1,8 +1,8 @@
 # purplefox Devblog: Part 1 - Introduction & Planning
-# By: Austin Jackson (vesche)
-# Dated: 09/15/2018
+* By: Austin Jackson (vesche)
+* Dated: 09/15/2018
 
-Welcome to the first development blog for a project I'm giving the working title, purplefox. This is a work-in-progress massively multiplayer online role-playing game (MMORPG) that I'll be hacking on in my free time. MMORPG's are notoriously complicated, and something I've always wanted to build. Over the past ~5 years I've gained a lot of knowledge in the areas of software development, computer networking, and computer security. I feel that I now have the right skillset to embark on this journey. This will likely be my primary side project for the unforeseen future.
+Welcome to the first development blog for a project I'm giving the working title, **purplefox**. This is a work-in-progress massively multiplayer online role-playing game (MMORPG) that I'll be hacking on in my free time. MMORPG's are notoriously complicated, and something I've always wanted to build. Over the past ~5 years I've gained a lot of knowledge in the areas of software development, computer networking, and computer security. I feel that I now have the right skillset to embark on this journey. This will likely be my primary side project for the unforeseen future.
 
 I'm going to talk about high-level design, proposed technologies, concerns, and a current roadmap in this first post. I'm going to specifically focus on planning the client & server architecture. Everything I discuss here is subject to change, I'm learning a lot as I go. 
 
@@ -46,7 +46,7 @@ Resources:
 
 ## Concerns
 
-I have a lot of concerns :| lol. I think it's important to write them down.
+I have a lot of concerns. I think it's important to write them down.
 
 * Expertise. Just want to document a personal & honest concern. I have minimal experience with C network programming, Twisted, and MongoDB. I do however have network programming experience with other languages, have used plenty of other network-oriented libraries, and have used other NoSQL databases. Also, if this project comes to fruition, the client-side will definitely be the largest C project I've ever built. Just throwing it out there that it's a concern that I'll be learning new libraries, APIs, and frameworks as I go.
 

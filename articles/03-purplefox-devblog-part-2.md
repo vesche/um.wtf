@@ -2,7 +2,7 @@
 * By: Austin Jackson (vesche)
 * Dated: 09/30/2018
 
-Welcome back to the development blog for my work-in-progress MMMORPG, **purplefox**. It's been about two weeks since my first devblog, and I've made some great progress since then! I've been focusing work on the client-side of purplefox. In this post I'm going to talk about what technologies I've decided to use, resources I found helpful, what I've built so far, and what's next.
+Welcome back to the development blog for my work-in-progress MMORPG, **purplefox**. It's been about two weeks since my first devblog, and I've made some great progress since then! I've been focusing work on the client, and I now have a solid foundation for it. In this post I'm going to talk about what technologies I've decided to use, resources I found helpful, what I've built so far, and what's next for purplefox.
 
 I've created a [GitHub repository for the purplefox client](https://github.com/vesche/purplefox-client) so if you'd like to see any of the code I discuss in this post, feel free to check it out.
 
@@ -10,14 +10,13 @@ I've created a [GitHub repository for the purplefox client](https://github.com/v
 
 In my first post, I outlined the following roadmap for the client:
 
-* Client Skeleton
-    * Structure, Makefile, etc.
-    * SDL initialization (Window, Renderer, etc)
-    * Error handling
-    * Primary SDL loop structure (init, user input, update, render)
-    * JSON support
-    * Network thread
-    * Send & recv data interacting with SDL
+* Structure, Makefile, etc.
+* SDL initialization (Window, Renderer, etc)
+* Error handling
+* Primary SDL loop structure (init, user input, update, render)
+* JSON support
+* Network thread
+* Send & recv data interacting with SDL
 
 I'm happy to report that I've accomplished all of this and then some! Currently the client is ~500 lines of C code. Here's what the current client repo looks like from a file standpoint:
 
@@ -35,9 +34,9 @@ $ tree
 |-- main.c          # Entry point, lots of SDL2 code
 |-- networking.c    # Networking code
 |-- networking.h
-|-- payloads.c      # JSON payloads
+|-- payloads.c      # Creates JSON payloads
 |-- payloads.h
-`-- sheet.png       # spritesheet - https://opengameart.org/content/tiny-16-basic
+`-- sheet.png       # Spritesheet - https://opengameart.org/content/tiny-16-basic
 ```
 
 ## Technologies
@@ -45,23 +44,23 @@ $ tree
 Here's a bunch of things I'm using to build this project. I first just want to say it's amazing having so many free & open-source tools, libraries, and resources at my disposal. I often feel like I'm just playing with complex legos built by other people and gluing things together to make something cool.
 
 * [C](https://en.wikipedia.org/wiki/C_(programming_language))
-    * I'm committed to using straight up ANSI C for this project. I really enjoy programming in C, it feels powerful and badass (read: I'm a geek). The client will be very fast and cross-platform because of this.
+    * I'm committed to using straight up ANSI C for this project. I really enjoy programming in C, it feels powerful and badass (read: I'm a geek). The client will be very fast and cross-platform which I'm excited about.
 * [SDL 2.0 (Simple DirectMedia Layer)](https://www.libsdl.org/)
-    * Awesome cross-platform library that is seriously making everything a breeze. Graphics, keyboard, mouse, audio, threading, and extensions that can do images & networking (see below). This library is a godsend. The [Wiki](https://wiki.libsdl.org/FrontPage) has been super helpful, I use the [API by Name documentation](https://wiki.libsdl.org/CategoryAPI) all the time.
+    * Awesome cross-platform library that is seriously making everything a breeze. Graphics, keyboard, mouse, audio, threading, and additional libraries that can do things like images & networking (see below). This library is a godsend. The [Wiki](https://wiki.libsdl.org/FrontPage) has been super helpful, I use the [API by Name documentation](https://wiki.libsdl.org/CategoryAPI) frequently.
 * [SDL_image 2.0](https://www.libsdl.org/projects/SDL_image/)
     * Great library for SDL that handles loading images, a sprite sheet in my case. It also has really helpful documentation.
 * [SDL_net](https://www.libsdl.org/projects/SDL_net/)
-    * Finding this SDL library has made this project 1000x easier. Network programming in C can get complicated quickly, and this library takes care of so much. It also has great documentation, just like the rest of SDL. I stand on the shoulders of giants.
+    * Finding this SDL library has made this project 100x easier. Network programming in C can get complicated quickly, and this library takes care of so much. It also has great documentation, just like the rest of SDL. I stand on the shoulders of giants.
 * [cJSON](https://github.com/DaveGamble/cJSON)
     * I tried a few other C JSON libraries before landing on cJSON including [json-c](https://github.com/json-c/json-c) and [pdjson](https://github.com/skeeto/pdjson). I really like how much functionality cJSON allows and that it has a single, easy to use header file. It does what I need and was easy to learn.
 * [Tiny 16: Basic](https://opengameart.org/content/tiny-16-basic)
-    * As I said in my last post, I'm not an artist. I needed some free placeholder art, and I ended up finding the awesome [OpenGameArt](https://opengameart.org/) website. A little bit of pursuing and I found the "Tiny 16: Basic" sprite sheet by [Sharm](https://opengameart.org/users/sharm). I really like the way it looks, I'm currently using a combined, single sprite sheet a user put together in the comments.
+    * As I said in my last post, I'm not an artist. I needed some free placeholder art, and I ended up finding the awesome [OpenGameArt](https://opengameart.org/) website. After a little bit of browsing, I found the "Tiny 16: Basic" sprite sheet by [Sharm](https://opengameart.org/users/sharm). I really like the way it looks, I'm currently using a combined, single sprite sheet a user put together in the comments section.
 
 ## Client Networking I - Sending a JSON Payload to the Server
 
-When building a game it's tempting to just want to dive and start doing game mechanics, player movement, animations, etc. However, this will not be an ordinary game- this is an MMORPG ladies and gents. Therefore, we have to keep our feet on the ground. For the client skeleton some of the most important code to write first is network communication. As I talked about in the first post, the game is going to talk TCP and send & receive JSON payloads. Again, this game is not being designed to be high-speed enough as to require UDP and we will be using JSON because it's 2018, *bro*.
+When building a game it's tempting to just want to dive in and start doing game mechanics, player movement, animations, etc. However, this will not be an ordinary game- this is an MMORPG ladies and gents. Therefore, we have to keep our feet on the ground. For the client skeleton some of the most important code to write first is network communication. As I talked about in the first post, the game is going to talk TCP and send & receive JSON payloads. Again, this game is not being designed to be high-speed enough as to require UDP and we will be using JSON because it's 2018, *bro*.
 
-Here's a JSON payload that I came up with, this likely will change over time but suits my needs for now. Everything sent to the server will have there common fields username, command, and arguments. This allows the server to know who we are talking about, what we want to do, and what variable amount of data is necessary to send along with it.
+Here's a JSON payload that I came up with, this likely will change over time but suits my needs for now. Everything sent to the server will have the common fields username, command, and arguments. This allows the server to know who we are talking about, what we want to do, and be given the data needed to go along with it.
 ```json
 {
     "username": "vesche",
@@ -73,7 +72,7 @@ Here's a JSON payload that I came up with, this likely will change over time but
 }
 ```
 
-So the first thing we need to do is build our JSON payload in C using cJSON.
+So the first thing we need to do is build our JSON payload in C using cJSON. Since our payloads will always contain a few common fields, we'll create a `payload_init` to start creating the JSON payload. This is mostly a lot of using the cJSON API, see the [README](https://github.com/DaveGamble/cJSON/blob/master/README.md) if you want to learn more.
 ```c
 #include "cJSON.h"
 
@@ -129,25 +128,16 @@ TCPsocket sock;
 
 void connect_to_server()
 {
-	IPaddress ip;
-
-	if (SDLNet_ResolveHost(&ip, server_addr, server_port) == -1) {
-		print_error_msg(ERROR_TYPE_NET, "Couldn't resolve host");
-		exit(2);
-	}
-
-	sock = SDLNet_TCP_Open(&ip);
-	if (sock == NULL) {
-		print_error_msg(ERROR_TYPE_NET, "Couldn't open socket");
-		exit(3);
-	}
+    IPaddress ip;
+    SDLNet_ResolveHost(&ip, server_addr, server_port);
+    sock = SDLNet_TCP_Open(&ip);
 }
 
 int client_send(char *message)
 {
-	char *data = message;
-	int len = strlen(message);
-	return SDLNet_TCP_Send(sock, data, len);
+    char *data = message;
+    int len = strlen(message);
+    return SDLNet_TCP_Send(sock, data, len);
 }
 ```
 
@@ -169,10 +159,10 @@ class TestFactory(protocol.Factory):
 endpoints.serverFromString(reactor, "tcp:1234").listen(TestFactory())
 ```
 
-Now to put this all together we will: connect to the serer, build a payload, and send it:
+Now to put this all together we will connect to the serer, build a payload, and send it:
 ```c
 connect_to_server();
-char *message = payload_move(player_position.x, player_position.y);
+char *message = payload_move(13, 37);
 client_send(message);
 ```
 
@@ -185,13 +175,13 @@ $ make && ./main.build
 
 Hot damn, we're sending JSON!
 
-## Client Networking II - Receiving Messages, Threading, and Sockets- Oh My!
+## Client Networking II - Threading, Receiving, and Sockets- Oh My!
 
 Sending messages to the server ends up being much easier than receiving messages from the server. This is because the client can decide when it wants to send a message, but it cannot decide when it will receive one. Therefore, it must always be ready (independent of its primary execution) to receive a message. This is accomplished by threading, more specifically to run a separate thread for the client to continually receive data and act appropriately on incoming messages.
 
 I want to give a HUGE shout to the MMORPG [Eternal Lands](http://www.eternal-lands.com/), it's open-source and can be found [here](https://github.com/raduprv/Eternal-Lands). The [main.c](https://github.com/raduprv/Eternal-Lands/blob/master/main.c) and [multiplayer.c](https://github.com/raduprv/Eternal-Lands/blob/master/multiplayer.c) files have been super helpful when coding this. Eternal Lands is a free to play MMORPG written in C using SDL by Radu Privantu and is still online & active to this day, it's been online for over 15 years!!! Reading through the code for this game has been so helpful, again- I'm humbled and I stand on the shoulders of giants. Eternal Lands also uses threading, you can see it's client recv loop [here](https://github.com/raduprv/Eternal-Lands/blob/master/multiplayer.c#L2332).
 
-First, let's create some code to receive messages. Then we'll create our `client_loop` which will run inside of our new thread. The `client_loop` first checks if the server has become disconnected, and then it checks the socket for incoming data for 100ms (so ten times a second). If there is data on the socket it will receive the data and then handle the incoming server message. The SDL_net socket code is pretty interesting, check the SDL_net documentation or see my [networking.c](https://github.com/vesche/purplefox-client/blob/master/networking.c#L17) for more.
+First, let's create some code to receive messages. Then we'll create our `client_loop` which will run inside of our new thread. The `client_loop` first checks if the server has become disconnected, and then it checks the socket for data for 100ms (so ten times a second). If there is data on the socket it will receive the data and then handle the incoming server message. The SDL_net socket code is pretty interesting, check the SDL_net documentation or see my [networking.c](https://github.com/vesche/purplefox-client/blob/master/networking.c#L17) for more.
 ```c
 #include <SDL2/SDL_net.h>
 
@@ -229,9 +219,9 @@ Next, we need to actually create the thread. SDL, once again being badass, has t
 // do things...
 
 SDL_Thread *network_thread;
-    network_thread = SDL_CreateThread(client_loop, "client_loop", (void *)NULL);
-    if (network_thread == NULL) {
-        return 1;
+network_thread = SDL_CreateThread(client_loop, "client_loop", (void *)NULL);
+if (network_thread == NULL) {
+    return 1;
 }
 
 // do more things...
@@ -241,7 +231,9 @@ SDL_WaitThread(network_thread, &thread_return_value);
 printf("Thread returned: %d\n", thread_return_value);
 ```
 
-Fantastic, now we have a separate thread for receiving messages from the server. In our client loop, I breezed over `handle_incoming` which (duh) handles the incoming messages. Because our client is sending & receiving JSON, we'll need to parse the incoming JSON data and do things with it.
+Fantastic, now we have a separate thread for receiving messages from the server.
+
+In our client loop, I breezed over `handle_incoming` which (duh) handles the incoming messages. Because our client is sending & receiving JSON, we'll need to parse the incoming JSON data and do things with it.
 ```c
 void handle_incoming(char *message)
 {
@@ -266,9 +258,9 @@ end:
 }
 ```
 
-## Player Movement - Sprite Animation & Reporting Player Location to the Server
+## Player Movement - Sprite Animation & Sending Player Location
 
-Now that we can send & receive messages to and from the server, it's time to do something actually useful with it. The first natural thing to want to do is player movement. So to start this process, we'll get a player sprite moving around the screen and reporting it's location to the server.
+Now that we can send & receive messages to and from the server, it's time to do something actually useful with it. The first natural thing to want to do is player movement. So to start this process, we'll get a player sprite moving around the screen and reporting its location to the server.
 
 I'm going to skip over a bit of SDL initialization, see the purplefox [main.c](https://github.com/vesche/purplefox-client/blob/master/main.c#L14) for that. If you're interested in learning SDL2 basics check out, [Writing 2D Games in C using SDL by Thomas Lively](https://www.youtube.com/watch?v=yFLa3ln16w0) and the [associated GitHub repo](https://github.com/tlively/sdl_seminar).
 
@@ -281,7 +273,7 @@ The player I'm going to add into the game is on that sprite sheet at (0, 256):
 
 ![player](media/03-player.png)
 
-After we initialize and setup SDL2 we will have a window and renderer. We'll first create two `SDL_Rect`'s for our player and player position. We'll load in our sprite sheet using IMG_Load from SDL_image. Then we can use `SDL_QueryTexture` to get our `texture_width` and `texture_height` and then divide it by how many sprites we have width & height wise (16 by 16 for our sprite sheet). We'll then set our player SDL_Rect to x, y (0, 256) so it's fixed to where the player sprites being on the sprite sheet. Then, we'll set our player_position SDL_Rect to (0, 0) which is the location of our player corresponding to the top left of the sprite. Finally, we can render the sprite.
+After we initialize and setup SDL2 we will have a window and renderer. We'll first create two `SDL_Rect`'s for our player and player position. We'll load in our sprite sheet using `IMG_Load` from SDL_image. Then we can use `SDL_QueryTexture` to get the width and height of our sprite sheet. We'll then divide by how many sprites we have width & height wise (16 by 16 for our sprite sheet). We'll then set our player SDL_Rect to x, y (0, 256) so it's fixed to where the player sprites are on the sprite sheet. Then, we'll set our player_position SDL_Rect x, y to (0, 0) which is the location of our player corresponding to the top left of the sprite. Finally, we can render the sprite.
 ```c
 SDL_Rect player;
 SDL_Rect player_position;
@@ -312,7 +304,7 @@ And, here's what it looks it:
 
 ![scrot](media/03-scrot.png)
 
-Not that exciting, let's get the little guy to move around and let the server know where we are. We'll now need to create a game loop, handle some keyboard input, and send our location to the server. We can modify our `player.y` value when we want to change the row of our sprite sheet (for orientation) and our `player.x` value to cycle through the animation. I created a simple `frame_time` variable which loops through my animations when my player is moving. Putting together some of the things we built above it's now easy to create a JSON payload for our location and send it off to the server.
+Not that exciting, let's get the little guy to move around and let the server know where we are. We'll now need to create a game loop, handle some keyboard input, and send our location to the server. We can modify our `player.y` value when we want to change the row of our sprite sheet (for changing direction) and our `player.x` value to cycle through the animation. I created a `frame_time` variable which loops through my animations when the player is moving. Putting together some of the things we built above it's now easy to create a JSON payload for our location and send it off to the server every time we move.
 ```c
 bool quit = false;
 int frame_time = 0;

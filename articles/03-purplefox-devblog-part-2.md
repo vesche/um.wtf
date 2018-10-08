@@ -159,7 +159,7 @@ class TestFactory(protocol.Factory):
 endpoints.serverFromString(reactor, "tcp:1234").listen(TestFactory())
 ```
 
-Now to put this all together we will connect to the serer, build a payload, and send it:
+Now to put this all together we will connect to the server, build a payload, and send it:
 ```c
 connect_to_server();
 char *message = payload_move(13, 37);

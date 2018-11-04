@@ -2,7 +2,7 @@
 
 ![me](me.jpg)
 
-My name is Austin Jackson, but you can call me vesche. This is my cozy internet home, glad you're here. I am currently working as a Security Engineer & Software Developer on an incident response team in Maryland. I spend a lot of my time fiddling around with computers because it's what I'm most passionate about.
+My name is Austin Jackson, but you can call me vesche. This is my cozy internet home, glad you're here. I am currently working as a Software Engineer at [Swimlane](https://swimlane.com/). I spend a lot of my time fiddling around with computers because it's what I'm most passionate about.
 
 Primarily, I'm interested in:
 * Computer security

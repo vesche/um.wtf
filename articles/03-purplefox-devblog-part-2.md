@@ -2,7 +2,7 @@
 * By: Austin Jackson (vesche)
 * Dated: 09/30/2018
 
-Welcome back to the development blog for my work-in-progress MMORPG, **purplefox**. It's been about two weeks since my first devblog, and I've made some great progress since then! I've been focusing work on the client, and I now have a solid foundation for it. In this post I'm going to talk about what technologies I've decided to use, resources I found helpful, what I've built so far, and what's next for purplefox.
+Welcome back to the development blog for my work-in-progress MMORPG, **purplefox**. It's been about two weeks since my first devblog, and I've made some great progress since then! I've been focusing work on the client, and I now have a solid foundation for it. In this post I'm going to talk about: what technologies I've decided to use, resources that I found helpful, what I've built so far, and what's next for purplefox.
 
 I've created a [GitHub repository for the purplefox client](https://github.com/vesche/purplefox-client) so if you'd like to see any of the code I discuss in this post, feel free to check it out.
 
@@ -41,7 +41,7 @@ $ tree
 
 ## Technologies
 
-Here's a bunch of things I'm using to build this project. I first just want to say it's amazing having so many free & open-source tools, libraries, and resources at my disposal. I often feel like I'm just playing with complex legos built by other people and gluing things together to make something cool.
+Here's a bunch of tech I'm using to build this project. It's amazing having so many free & open-source tools, libraries, and resources at my disposal- cheers to the open-source community.
 
 * [C](https://en.wikipedia.org/wiki/C_(programming_language))
     * I'm committed to using straight up ANSI C for this project. I really enjoy programming in C, it feels powerful and badass (read: I'm a geek). The client will be very fast and cross-platform which I'm excited about.
@@ -50,7 +50,7 @@ Here's a bunch of things I'm using to build this project. I first just want to s
 * [SDL_image 2.0](https://www.libsdl.org/projects/SDL_image/)
     * Great library for SDL that handles loading images, a sprite sheet in my case. It also has really helpful documentation.
 * [SDL_net](https://www.libsdl.org/projects/SDL_net/)
-    * Finding this SDL library has made this project 100x easier. Network programming in C can get complicated quickly, and this library takes care of so much. It also has great documentation, just like the rest of SDL. I stand on the shoulders of giants.
+    * Finding this SDL library has made this project ten times easier. Network programming in C can get complicated quickly. SDL_net has helped keep the networking code much more clean. It also has great documentation, just like the rest of SDL.
 * [cJSON](https://github.com/DaveGamble/cJSON)
     * I tried a few other C JSON libraries before landing on cJSON including [json-c](https://github.com/json-c/json-c) and [pdjson](https://github.com/skeeto/pdjson). I really like how much functionality cJSON allows and that it has a single, easy to use header file. It does what I need and was easy to learn.
 * [Tiny 16: Basic](https://opengameart.org/content/tiny-16-basic)
@@ -179,7 +179,7 @@ Hot damn, we're sending JSON!
 
 Sending messages to the server ends up being much easier than receiving messages from the server. This is because the client can decide when it wants to send a message, but it cannot decide when it will receive one. Therefore, it must always be ready (independent of its primary execution) to receive a message. This is accomplished by threading, more specifically to run a separate thread for the client to continually receive data and act appropriately on incoming messages.
 
-I want to give a HUGE shout to the MMORPG [Eternal Lands](http://www.eternal-lands.com/), it's open-source and can be found [here](https://github.com/raduprv/Eternal-Lands). The [main.c](https://github.com/raduprv/Eternal-Lands/blob/master/main.c) and [multiplayer.c](https://github.com/raduprv/Eternal-Lands/blob/master/multiplayer.c) files have been super helpful when coding this. Eternal Lands is a free to play MMORPG written in C using SDL by Radu Privantu and is still online & active to this day, it's been online for over 15 years!!! Reading through the code for this game has been so helpful, again- I'm humbled and I stand on the shoulders of giants. Eternal Lands also uses threading, you can see it's client recv loop [here](https://github.com/raduprv/Eternal-Lands/blob/master/multiplayer.c#L2332).
+I want to give a HUGE shout out to the MMORPG [Eternal Lands](http://www.eternal-lands.com/), it's open-source and can be found [here](https://github.com/raduprv/Eternal-Lands). The [main.c](https://github.com/raduprv/Eternal-Lands/blob/master/main.c) and [multiplayer.c](https://github.com/raduprv/Eternal-Lands/blob/master/multiplayer.c) files have been super helpful when coding this. Eternal Lands is a free to play MMORPG written in C using SDL by Radu Privantu and is still online & active to this day, and it's been online for over 15 years!!! Reading through the code for this game has been very helpful. Eternal Lands also uses threading, you can see it's client recv loop [here](https://github.com/raduprv/Eternal-Lands/blob/master/multiplayer.c#L2332).
 
 First, let's create some code to receive messages. Then we'll create our `client_loop` which will run inside of our new thread. The `client_loop` first checks if the server has become disconnected, and then it checks the socket for data for 100ms (so ten times a second). If there is data on the socket it will receive the data and then handle the incoming server message. The SDL_net socket code is pretty interesting, check the SDL_net documentation or see my [networking.c](https://github.com/vesche/purplefox-client/blob/master/networking.c#L17) for more.
 ```c

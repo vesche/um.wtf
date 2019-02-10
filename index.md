@@ -11,4 +11,4 @@ My interests are in:
 * Malware & RE
 * Network security monitoring
 
-<img align="right" src="me.png" width="360">
+<img src="me.png">

@@ -2,6 +2,8 @@
 
 My name is Jackson, but you can call me vesche. Welcome to my cozy internet home, glad you're here. I am currently working as a Software Engineer at [Swimlane](https://swimlane.com/). I spend most of my time hacking on \*nix systems because it's what I'm most passionate about.
 
+<img src="me.png" width="320px" align="right">
+
 My interests are in:
 * Computer security
 * Programming in Python & C
@@ -11,4 +13,3 @@ My interests are in:
 * Malware & RE
 * Network security monitoring
 
-<img src="me.png">

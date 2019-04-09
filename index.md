@@ -1,8 +1,6 @@
 # Hello, world!
 
-My name is Jackson, but you can call me vesche. Welcome to my cozy internet home, glad you're here. I am currently working as a Software Engineer at [Swimlane](https://swimlane.com/). I spend most of my time hacking on \*nix systems because it's what I'm most passionate about.
-
-<img src="me.png" width="320px" align="right">
+Welcome to my cozy internet home. My name is Jackson & my handle is vesche, I am currently working as a Software Engineer at [Swimlane](https://swimlane.com/). I spend most of my time hacking something on a \*nix system because that's what I'm most passionate about.
 
 My interests are in:
 * Computer security

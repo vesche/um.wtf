@@ -12,7 +12,8 @@ My interests are primarily in:
 * Malware analysis
 * Network security monitoring
 
-GitHub - https://github.com/vesche
-Reddit - https://reddit.com/u/vesche
-LinkedIn - https://www.linkedin.com/in/vesche/
-Email - vesche@protonmail.com
+You can find me on:
+* GitHub - https://github.com/vesche
+* Reddit - https://reddit.com/u/vesche
+* LinkedIn - https://www.linkedin.com/in/vesche/
+* Email - vesche@protonmail.com

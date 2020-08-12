@@ -1,4 +1,5 @@
 # My Articles
+* 08/12/2020 - [Black Hat USA 2020 Hacking Puzzle Solutions (Cyborg Security)](https://www.cyborgsecurity.com/black-hat-usa-2020-hacking-puzzle-solutions/)
 * 07/13/2020 - [Python Malware On The Rise (Cyborg Security)](https://www.cyborgsecurity.com/python-malware-on-the-rise/)
 * 04/19/2020 - [NotWannasigh WPICTF 2020 Writeup](articles/04-notwannasigh-wpictf-2020-writeup.md)
 * 03/24/2019 - [The Norsk Hydro ransomware attack: An in-depth look (Swimlane)](https://swimlane.com/blog/norsk-hydro-ransomware-attack/)

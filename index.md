@@ -20,7 +20,7 @@ Some of my open-source projects:
 * [pmhsc](https://github.com/vesche/pmhsc) - Python implementation of a strong, homophonic substitution cipher.
 
 You can find me on:
-* GitHub - https://github.com/vesche
-* Reddit - https://reddit.com/u/vesche
-* LinkedIn - https://www.linkedin.com/in/vesche/
-* Email - vesche@protonmail.com
+* [GitHub](https://github.com/vesche)
+* [Reddit](https://reddit.com/u/vesche)
+* [LinkedIn](https://www.linkedin.com/in/vesche/)
+* [Email](vesche@protonmail.com)

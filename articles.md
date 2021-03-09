@@ -1,4 +1,10 @@
 # My Articles
+
+* 03/09/2021 - [Threat Hunt Deep Dives Ep. 5: Living off the Land (LotL), Downloading Files on Microsoft Windows](https://www.cyborgsecurity.com/cyborg_labs/living-off-the-land-downloading-files-on-microsoft-windows/)
+* 01/21/2021 - [Threat Hunt Deep Dives Ep. 4: Apache Struts RCE, CVE-2020-17530](https://www.cyborgsecurity.com/cyborg_labs/threat-hunt-deep-dives-apache-struts-rce-cve-2020-17530/)
+* 12/15/2020 - [Threat Hunt Deep Dives Ep. 3: SolarWinds Supply-Chain Compromise (Cyborg Security)](https://www.cyborgsecurity.com/cyborg_labs/threat-hunt-deep-dives-solarwinds-supply-chain-compromise-solorigate-sunburst-backdoor/)
+* 12/10/2020 - [Threat Hunt Deep Dives Ep. 2: Application Shimming (Cyborg Security)](https://www.cyborgsecurity.com/cyborg_labs/threat-hunt-deep-dives-application-shimming/)
+* 11/20/2020 - [Threat Hunt Deep Dives Ep. 1: The Return of the WIZard (Cyborg Security)](https://www.cyborgsecurity.com/cyborg_labs/threat-hunt-deep-dives-episode-1/)
 * 08/12/2020 - [Black Hat USA 2020 Hacking Puzzle Solutions (Cyborg Security)](https://www.cyborgsecurity.com/black-hat-usa-2020-hacking-puzzle-solutions/)
 * 07/13/2020 - [Python Malware On The Rise (Cyborg Security)](https://www.cyborgsecurity.com/python-malware-on-the-rise/)
 * 04/19/2020 - [NotWannasigh WPICTF 2020 Writeup](articles/04-notwannasigh-wpictf-2020-writeup.md)

@@ -1,5 +1,3 @@
-# My Articles
-
 * 03/09/2021 - [Threat Hunt Deep Dives Ep. 5: LotL Pt. 1, Downloading Files on MS Windows](https://www.cyborgsecurity.com/cyborg_labs/living-off-the-land-downloading-files-on-microsoft-windows/)
 * 01/21/2021 - [Threat Hunt Deep Dives Ep. 4: Apache Struts RCE, CVE-2020-17530](https://www.cyborgsecurity.com/cyborg_labs/threat-hunt-deep-dives-apache-struts-rce-cve-2020-17530/)
 * 12/15/2020 - [Threat Hunt Deep Dives Ep. 3: SolarWinds Supply-Chain Compromise](https://www.cyborgsecurity.com/cyborg_labs/threat-hunt-deep-dives-solarwinds-supply-chain-compromise-solorigate-sunburst-backdoor/)

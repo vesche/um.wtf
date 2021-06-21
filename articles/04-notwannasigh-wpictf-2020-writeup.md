@@ -61,7 +61,7 @@ $ xxd flag-gif.EnCiPhErEd | head
 00000090: 7319 5c0f 0282 247b 1139 4bc3 7617 cdca  s.\...${.9K.v...
 ```
 
-Not encrypted in any discernible way... Let's take a look at the PCAP in Wireshark.
+Not encrypted in any discernible way. Let's take a look at the PCAP in Wireshark.
 
 ![scrot1](media/04-scrot1.png)
 

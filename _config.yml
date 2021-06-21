@@ -1,8 +1,2 @@
 title: um.wtf
-email: vesche@protonmail.com
-description: <a href='/index'>Home</a> | <a href='/articles'>My Articles</a>
-url: "https://um.wtf"
-theme: jekyll-theme-hacker
-
-plugins:
-  - jekyll-octicons
+theme: jekyll-theme-minimal

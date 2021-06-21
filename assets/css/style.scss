@@ -1,0 +1,38 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+html * {
+    font-family: Source Code Pro;
+    font-size: 16px;
+}
+
+body {
+    color: #e2e2e2;
+    background-color: #000000;
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+h1, h2, h3, p {
+    color: #e2e2e2;
+}
+
+a {
+    color: #bb7ad6;
+}
+
+a:hover {
+    color: gray;
+    font-weight: normal;
+}
+
+pre, code, div .highlight {
+    background-color: #3d3d3d;
+    color: #e2e2e2;
+}
+
+strong {
+    color: #ffffff;
+}

@@ -223,7 +223,11 @@ GEM
       jekyll-seo-tag (~> 2.1)
     minitest (5.14.4)
     multipart-post (2.1.1)
+<<<<<<< HEAD
     nokogiri (1.11.7)
+=======
+    nokogiri (1.11.4)
+>>>>>>> 98d03315736a24d2a8c9bcc0d6cb1d6cd52657ee
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     octicons (14.2.2)

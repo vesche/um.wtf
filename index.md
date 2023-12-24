@@ -1,4 +1,4 @@
-Welcome to my cozy internet home! My name is Austin (aka vesche). I spend most of my time building and breaking things on *nix systems because that's what I'm most passionate about. My interests are primarily in computer security, programming, threat hunting, exploits, malware, and reverse engineering. I'm currently working as a Senior Threat Detection Engineer at [GitHub](https://github.com/).
+Welcome to my cozy internet home! My name is Austin (aka vesche). I spend most of my time building and breaking things on *nix systems. My interests are primarily in computer security, programming, threat detection, malware, and reverse engineering.
 
 <center>
     <a href="https://github.com/vesche"><img src="https://edent.github.io/SuperTinyIcons/images/svg/github.svg" width="48" title="GitHub" /></a>

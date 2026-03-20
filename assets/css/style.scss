@@ -11,11 +11,31 @@ html * {
 body {
     color: #e2e2e2;
     background-color: #000000;
-    padding-right: 12%;
-    padding-left: 12%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 32px;
 }
 
-h1, h2, h3, p {
+.site-header {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.site-logo {
+    width: 42%;
+    max-width: 360px;
+    min-width: 180px;
+}
+
+.site-header nav {
+    margin-top: 0.5em;
+}
+
+.site-content {
+    line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6, p {
     color: #e2e2e2;
 }
 
@@ -28,11 +48,171 @@ a:hover {
     font-weight: normal;
 }
 
-pre, code, div .highlight {
-    background-color: #3d3d3d;
-    color: #e2e2e2;
-}
-
 strong {
     color: #ffffff;
 }
+
+img {
+    max-width: 100%;
+}
+
+pre {
+    background-color: #161622;
+    border: 1px solid #2d2d44;
+    border-radius: 6px;
+    padding: 14px 18px;
+    overflow-x: auto;
+    line-height: 1.5;
+}
+
+code {
+    background-color: #161622;
+    color: #e2e2e2;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.95em;
+}
+
+pre code {
+    padding: 0;
+    background: none;
+    font-size: inherit;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        padding: 24px 18px;
+    }
+    .site-logo {
+        width: 55%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    body {
+        padding: 16px 14px;
+    }
+}
+
+// ------------------------------------
+// Syntax highlighting - Dracula-inspired dark theme
+// ------------------------------------
+.highlight { background-color: #161622; color: #f8f8f2; }
+.highlight pre { background-color: #161622; border: none; }
+.highlight .hll { background-color: #2d2d44; }
+.highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+
+// Comments
+.highlight .c,
+.highlight .cd,
+.highlight .cm,
+.highlight .c1,
+.highlight .cs,
+.highlight .ch { color: #6272a4; font-style: italic; }
+
+// Preprocessor
+.highlight .cp { color: #ff79c6; }
+.highlight .cpf { color: #6272a4; font-style: italic; }
+
+// Errors
+.highlight .err { color: #ff5555; background-color: transparent; }
+
+// Keywords
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kv { color: #ff79c6; font-weight: bold; }
+
+// Keyword type (int, char, unsigned, etc.)
+.highlight .kt { color: #8be9fd; font-style: italic; }
+
+// Strings
+.highlight .s,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .s2,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .s1,
+.highlight .ss { color: #f1fa8c; }
+
+// String regex
+.highlight .sr { color: #ff79c6; }
+
+// Numbers
+.highlight .m,
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .mx,
+.highlight .il { color: #bd93f9; }
+
+// Name - attribute
+.highlight .na { color: #50fa7b; }
+
+// Name - builtin
+.highlight .nb { color: #8be9fd; font-style: italic; }
+.highlight .bp { color: #8be9fd; font-style: italic; }
+
+// Name - class
+.highlight .nc { color: #8be9fd; font-weight: bold; }
+
+// Name - constant
+.highlight .no { color: #bd93f9; }
+
+// Name - decorator
+.highlight .nd { color: #50fa7b; }
+
+// Name - entity
+.highlight .ni { color: #f8f8f2; }
+
+// Name - exception
+.highlight .ne { color: #ff5555; font-weight: bold; }
+
+// Name - function
+.highlight .nf { color: #50fa7b; }
+
+// Name - label
+.highlight .nl { color: #8be9fd; }
+
+// Name - namespace
+.highlight .nn { color: #f8f8f2; }
+
+// Name - tag (HTML/XML)
+.highlight .nt { color: #ff79c6; }
+
+// Name - variable
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi { color: #f8f8f2; }
+
+// Operators
+.highlight .o { color: #ff79c6; }
+.highlight .ow { color: #ff79c6; font-weight: bold; }
+
+// Punctuation
+.highlight .p { color: #f8f8f2; }
+
+// Generic diff
+.highlight .gd { color: #ff5555; }
+.highlight .ge { font-style: italic; }
+.highlight .gh { color: #f8f8f2; font-weight: bold; }
+.highlight .gi { color: #50fa7b; }
+.highlight .go { color: #6272a4; }
+.highlight .gp { color: #6272a4; font-weight: bold; }
+.highlight .gs { font-weight: bold; }
+.highlight .gu { color: #6272a4; font-weight: bold; }
+.highlight .gt { color: #ff5555; }
+
+// Misc
+.highlight .w { color: #f8f8f2; }
